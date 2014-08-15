@@ -1,79 +1,422 @@
 <!DOCTYPE html>
+<!--(c) Yuriy Matuhin — front end developer | ymatuhin.ru | ymatuhin@yandex.ru -->
+
 <html>
-
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Less-presentation : ">
+    <title>LESS	— динамический язык стилевой разметки</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Less-presentation</title>
+    <meta charset='utf-8'>	  
+	<!-- <script src="http://html5slides.googlecode.com/svn/trunk/slides.js"></script>
+	<script>window.jQuery || document.write('<script src="slides.js"><\/script>')</script> -->
+	<script src="slides.js"></script>
+	<style>
+		.less .less_logo, .less .slides > article:not(.nobackground):not(.less_logo) {
+			background:#fff url('data:image/png;base64,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') 50% 50% no-repeat;
+		}
+		.less .slides > article:not(.nobackground):not(.less_logo)  {
+			background-position:97% 97%;
+			 -webkit-background-size:10%;
+			  -khtml-background-size:10%;
+				-moz-background-size:10%;
+				  -o-background-size:10%;
+					 background-size:10%;
+		}
+		.less .slides > article {
+			font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+		}
+		.less .pos_st {
+			position:static;
+		}
+		.less .slide2 h1{
+			margin-top:160px;
+		}
+		.last_slide h1 {
+			text-align:center;
+		}
+		.less .last_slide p {
+			text-align:center;
+			text-indent:0;
+			padding:0;
+		}
+		.less h3{
+			font-size:38px;
+			line-height:42px;
+			margin-bottom:30px;
+		}
+		.less ul ul {
+			margin-left:40px;
+		}
+		.less p {
+			text-indent:40px;	
+		}
+		.less .slide4 h3{
+			margin-bottom:70px;
+		}/*
+		.less .black .lit{
+			color:#000;
+		}
+		.less .value .lit, .less .value .pln, .less .value .com{
+			color:#390;
+			font-style:normal;
+		}
+		.less .attribute .pln, .less .attribute .pun{
+			color:#2F98FF;
+		}*/
+		.less .pln, .less .pun, .less .com, .less .lit , .less .typ  , .less .str , .less .kwd {
+			color:#000 !important;
+			font-style:normal !important;
+		}
+	</style>
   </head>
 
-  <body>
+  <body style='display: none' class="less">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ymatuhin/less-presentation">View on GitHub</a>
+    <section class='slides layout-regular'>
+      
+      <article class='less_logo nobackground'>
+      </article>
 
-          <h1 id="project_title">Less-presentation</h1>
-          <h2 id="project_tagline"></h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/ymatuhin/less-presentation/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/ymatuhin/less-presentation/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+      <article class="slide2">
+        <h1>
+		  «LESS»
+        </h1>
+		<h2 class="pos_st">
+          динамический язык стилевой разметки </h2>
+        <p> <br />
+          Юрий Матюхин
+          <br>
+          Декабрь, 2012
+        </p>
+      </article>
+      
+	  
+      <article class="slide3">
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          Основные темы:
+        </h3>
+        <ul class=""	>
+        	<li>Что такое LESS</li>
+        	<li>Как использовать LESS</li>
+        	<li>Синтаксис LESS</li>			
+			<ul>
+				<li>Переменные</li>
+				<li>Примеси (обычные и с параметром)</li>
+				<li>Вложенные правила</li>
+				<li>Операции и Функции</li>
+				<li>Комментарии, импортирование и экранирование</li>
+			</ul>
+        	<li>Дополнительная информация</li>
+        </ul>	
+      </article>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+      <article class='slide4'>
+        <h3>
+          Что такое LESS
+        </h3>
+        <p>
+			LESS – это надстройка над CSS, которая расширяет CSS динамическими возможностями, такими как переменные, примешивания, операции и функции. 
+        </p>
+		<p>
+			Любой CSS код – это валидный LESS, но дополнительные элементы LESS не будут работать в простом CSS.
+			Следовательно существующий CSS уже является работоспособным LESS кодом, что уменьшает порог вхождения в новую технологию.
+		</p>
+      </article>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+      <article class="smaller">
+        <h3>
+          Как использовать LESS
+        </h3>
+		<p>Есть два способа использования LESS. Вы можете создать LESS файл и конвертировать его при помощи Javascript на лету или скомпилировать его заранее и использовать получившийся CSS файл.</p>
+		<p>Используем LESS и Javascript файл (1 способ):</p>
+		<p>Нужно скачать с сайта <a href="http://lesscss.org/">lesscss.org</a> Javascript файл и подключить его к странице:</p>
+		<pre class="prettyprint"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">'text/javascript'</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">'less.js'</span><span class="tag">&gt;</span></pre>
+		<p>Затем создадим файл с расширением .less и подключим его:</p>
+		<pre class="prettyprint"><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">'text/css'</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">'stylesheet/less'</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">'style.less'</span><span class="tag">&gt;</span><span class="tag">&lt;/link&gt;</span></pre>
+		<p>Удостоверьтесь, что вы прикрепили LESS файл перед Javascript.</p>
+		<p>Теперь LESS файл будет работать также как и обычный CSS.</p>
+      </article>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+      <article class="smaller">
+        <h3>
+          Как использовать LESS
+        </h3>
+		<p>Компилируем LESS файл (2 способ):</p>
+		<p>
+			Хотя этот способ немного утомительней, но иногда он является более предпочтительным. Чтобы не конвертировать код при каждой загрузке страницы можно использовать результирующий CSS файл.
+		</p>
+		<p>
+			Конвертеры: для Windows – <a href="#">Winless</a> и <a href="#">LESS.app</a> для Mac.
+		</p>
+		<p>
+			Обе программы имеют интуитивно понятный интерфейс, поэтому расписывать как ими пользоваться подробнее не имеет смысла.
+		</p>
+		<p>
+			LESS может компилироваться на стороне сервера с Node.js и Rhino. Подробнее об этом можно будет прочитать на официальном сайте.
+		</p>
+      </article>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Переменные
+        </h3>
+		<p>Переменные в LESS работают так же как в большинстве других языкая программирования. Вы можете использовать их для хранения значения, а затем использовать переменные вместо самого значения всякий раз, когда вам это нужно.</p>
+<pre class="prettyprint">
+<span class="at_rule black">@header-font: <span class="value">Georgia</span></span>;
+<span class="tag">h1</span>, <span class="tag">h2</span>, <span class="tag">h3</span>, <span class="tag">h4</span> <span class="rules">{
+    <span class="rule"><span class="attribute">font-family</span>:<span class="value"> @header-font;</span></span>
+<span class="rule">}</span></span>
+<span class="class">.large</span> <span class="rules">{
+    <span class="rule"><span class="attribute">font-family</span>:<span class="value">@header-font;</span></span>
+<span class="rule">}</span></span>
+</pre>
+	<p>
+		В примере выше мы объявляем переменную <code>@header-font</code> и записываем туда значение «<code>Georgia</code>». Теперь мы можем использовать эту переменную всегда, когда мы хотим установить шрифт Georgia. 
+	</p>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Примеси (mixins)
+        </h3>
+		<p>Примеси в LESS избавят вас от набора излишнего кода. </p>
+<pre class="prettyprint">
+<span class="class">.rounded_top</span> <span class="rules">{
+    <span class="rule"><span class="attribute">-webkit-border-top-left-radius</span>:<span class="value"> <span class="number">6</span>px;</span></span>
+    <span class="rule"><span class="attribute">-webkit-border-top-right-radius</span>:<span class="value"> <span class="number">6</span>px;</span></span>
+    <span class="rule"><span class="attribute">-moz-border-radius-topleft</span>:<span class="value"> <span class="number">6</span>px;</span></span>
+    <span class="rule"><span class="attribute">-moz-border-radius-topright</span>:<span class="value"> <span class="number">6</span>px;</span></span>
+    <span class="rule"><span class="attribute">border-top-left-radius</span>:<span class="value"> <span class="number">6</span>px;</span></span>
+    <span class="rule"><span class="attribute">border-top-right-radius</span>:<span class="value"> <span class="number">6</span>px;</span></span>
+<span class="rule">}</span></span>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+.tab {
+    background: <span class="value">#333</span>;
+    color:<span class="value">#fff</span>;
+    .rounded_top;
+}
+.submit {
+    .rounded_top;
+}
+</pre>
+	<p>
+		Мы определили элемент <code>.rounded_top</code> для округления верхних углов. Когда мы добавляем его к любому другому элементу как примесь мы  импортируем правила, которые мы создали для него.
+	</p>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Примеси с параметром
+        </h3>
+		<p>Примеси с параметром - это обычные примеси, в которых можно указывать аргумент при вызове.</p>
+<pre class="prettyprint">
+.rounded_top(@radius) {
+    -webkit-border-top-left-radius: @radius;
+    -webkit-border-top-right-radius: @radius;
+    -moz-border-radius-topleft: @radius;
+    -moz-border-radius-topright: @radius;
+    border-top-left-radius: @radius;
+    border-top-right-radius: @radius;
+}
+.tab {
+    background: #333;
+    color:#fff;
+    .rounded_top(6px);
+}
+.submit {
+    .rounded_top(3px);
+}
+</pre>
+<p>Тут радиус у <code>.tab</code> равен 6px, а <code>.submit</code> получит значение 3px.</p>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Вложенные правила
+        </h3>
+		<p>Во время написания CSS мы пользуемся каскадностью стилей. Чтобы изменить поля у параграфа только внутри статьи можно использовать следующий код:</p>
+<pre>
+article.post p{
+    margin: 0 0 12px 0;
+}
+</pre>
+<p>При таком подходе, если нам надо изменить стиль элемента только внутри статьи, нужно будет использовать префикс <code>article.post</code> для каждого элемента. Это делает написание кода более скучным и усложняет его чтение.</p>
+<p>В LESS мы можем вложить эти правила, что даст нам более короткую и логичную версию наших стилей. Например:</p>
+<pre>
+article.post {
+    p{
+        margin: 0 0 12px 0;
+    }
+}
+</pre>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Операции
+        </h3>
+		<p>В LESS можно использовать операции умножения, деления, сложения и вычитания. </p>
+		
+<pre>
+.button{
+    @unit: 3px;
+    border:@unit solid #ddd;
+    padding: @unit * 3;
+    margin: @unit * 2;
+}
+</pre>
+<p>Присваиваем переменной <code>@unit</code> значение 3px. Затем мы устанавливаем ширину рамки равную значению переменной <code>@unit</code>, отступы в три раза больше этой ширины, а поля – в два.	</p>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Операции управления цветом
+        </h3>
+		<p>В LESS можно использовать операции для смешивания цветов.</p>
+		<p>Если вы хотите изменить значение цвета, то можете сделать это вычитанием или добавлением другого цвета.</p>
+<pre>
+@color: #941f1f;
+button {
+    background: #941f1f + #222222;
+    border: #941f1f - #111111;
+}
+</pre>
+<p>Вышеприведённая операция с фоном увеличит каждое значение HEX на 2. Результатом будет <code>#B64141</code> — более светлый вариант оригинального цвета. Операция с рамкой уменьшит каждое значение HEX на 1 и выдаст более темный цвет: <code>#830E0E</code>.
+</p><p>
+На практике есть немало случаев, когда мы начинаем с базового цвета и нуждаемся в слегка затемненном или осветленном его варианте.
+</p>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Функции работы с цветом
+        </h3>
+		<p>LESS предлагает множество функций, изменяющих указание цвета. Цвета сначала преобразуются в цветовую модель HSL (от англ. Hue, Saturation, Lightness — цветовая модель, в которой цветовыми координатами являются тон, насыщенность и светлота), а затем манипуляции ведутся с каждым каналом по отдельности:</p>
+<pre>
+lighten(@color, 10%);     // возвращает цвет, который на 10% *светлее*
+darken(@color, 10%);      // возвращает цвет, который на 10% *темнее*
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+saturate(@color, 10%);    // возвращает цвет, на 10% *более* насыщенный
+desaturate(@color, 10%);  // возвращает цвет, на 10% *менее* насыщенный
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+fadein(@color, 10%);      // возвращает цвет, на 10% *менее* прозрачный
+fadeout(@color, 10%);     // возвращает цвет, на 10% *более* прозрачный
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+spin(@color, 10);         // возвращает цвет, на 10 градусов больший по оттенку
+spin(@color, -10);        // возвращает цвет, на 10 градусов меньший по оттенку
+</pre>
+      </article>
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Функции работы с цветом
+        </h3>
+		<p>Вы также можете извлекать информацию о цвете:</p>
+<pre>
+hue(@color);        // возвращает канал тона (`hue`) в указанном @color
+saturation(@color); // возвращает канал насыщенности (`saturation`) в указанном @color
+lightness(@color);  // возвращает канал светлоты (`lightness`) в указанном @color
+</pre>
+<p>Это полезно, если Вы хотите создать новый цвет, основываясь на значениях каналов другого цвета, например:</p>
+<pre>
+@new: hsl(hue(@old), 45%, 90%);
+</pre>
+<p>в результате <code>@new</code> получит тон (hue), равный тону цвета <code>@old</code>, но при этом будет иметь свои собственные насыщенность и светлоту.</p>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Математические функции
+        </h3>
+		<p>LESS предлагает пару удобных математических функций, которые можно применять к числовым значениям:</p>
+<pre>
+round(1.67); // вернет `2`
+ceil(2.4);   // вернет `3`
+floor(2.6);  // вернет `2`
+</pre>
+<p>Если Вам нужно преобразовать значение в проценты, это можно сделать при помощи функции percentage:</p>
+<pre>
+percentage(0.5); // вернет `50%`
+</pre>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Комментарии
+        </h3>
+		<p>LESS придерживается привычного по CSS стиля комментариев:</p>
+<pre>
+/* Привет, я комментарий в стиле CSS! */
+.class { color: black }
+</pre>
+<p>В LESS также возможны однострочные комментарии, они считаются невидимыми, и не появляются в итоговом, скомпилированный выводе CSS:</p>
+<pre>
+// Привет, я невидимый комментарий, я не появлюсь в выводе CSS
+.class { color: white }
+</pre>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Импортирование
+        </h3>
+		<p>Вы можете импортировать файлы .less, при этом все переменные и примеси в них становятся доступными в главном файле. Расширение .less необязательно, так что обе следующие записи сработают одинаково:</p>
+<pre>
+@import "lib.less";
+@import "lib";
+</pre>
+<p>Если Вы хотите импортировать файл CSS, и не хотите, чтобы LESS обрабатывал его содержимое, просто используйте расширение .css:</p>
+<pre>
+@import "lib.css";
+</pre>
+<p>Директива будет оставлена как есть, и в этом же виде попадет в вывод CSS.</p>
+      </article>
+	  
+      <article class='smaller'>
+        <h3>
+          Синтаксис LESS — Экранирование
+        </h3>
+		<p>Иногда Вам может потребоваться вывести значение параметра CSS, либо не валидное с точки зрения CSS, либо с синтаксисом, который LESS не распознает.</p>
+		<p>В подобном случае используйте функцию e(), которой нужно передать в качестве параметра строку. Вот пример:</p>
+<pre>
+.class {
+  filter: e("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image.png')");
+}
+</pre>
+<p>Это будет выведено в виде:</p>
+<pre>
+.class {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image.png');
+}
+</pre>
+      </article>
+      <article class='smaller'>
+        <h3>
+          Дополнительная информация
+        </h3>
+		<p>В данной презентации рассмотрены основные возможности LESS, более подробное описание вы сможете найти по следующим ссылкам:</p>
+		<ul>
+			<li><a href="http://lesscss.org">lesscss.org</a> - официальный сайт (EN)</li>
+			<li><a href="http://lesscss.ru">lesscss.ru</a> - официальный сайт</li>
+			<li>Статья в <a href="http://ru.wikipedia.org/wiki/LESS_(%D1%8F%D0%B7%D1%8B%D0%BA_%D1%81%D1%82%D0%B8%D0%BB%D0%B5%D0%B9)">википедии</a></li>
+			<li>Перевод статьи на <a href="http://habrahabr.ru/post/136525/">Хабре</a> </li>
+			<li>Статья с примерами на <a href="http://ruseller.com/lessons.php?rub=2&id=1566">RUSELLER</a></li>
+			<li>В популярном фреймворке «Bootstrap от Twitter'а» используется LESS. Прочитать про это можно <a href="http://bootstrap.veliovgroup.com/less.php">тут</a>.</li>
+			<li>Часто альтернативой LESS выступает SASS, их отличния можно почитать на <a href="http://habrahabr.ru/post/130886/">Хабре</a></li>
+		</ul>
+		<p><br /><br />Ссылка на презентацию — <a href="http://ymatuhin.vbrk.ru/less.html">http://ymatuhin.vbrk.ru/less.html</a></p>
+      </article>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+	
+      <article class="last_slide">
+        <h1>
+		  Спасибо за внимание!
+        </h1><br />
+		<p>
+          Юрий Матюхин<br>
+          Декабрь, 2012
+        </p>
+      </article>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Less-presentation maintained by <a href="https://github.com/ymatuhin">ymatuhin</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
+    </section>
 
   </body>
 </html>
