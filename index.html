@@ -5,7 +5,7 @@
   <head>
     <title>LESS	— динамический язык стилевой разметки</title>
 
-    <meta charset='utf-8'>	  
+    <meta charset='utf-8'>
 	<!-- <script src="http://html5slides.googlecode.com/svn/trunk/slides.js"></script>
 	<script>window.jQuery || document.write('<script src="slides.js"><\/script>')</script> -->
 	<script src="slides.js"></script>
@@ -47,7 +47,7 @@
 			margin-left:40px;
 		}
 		.less p {
-			text-indent:40px;	
+			text-indent:40px;
 		}
 		.less .slide4 h3{
 			margin-bottom:70px;
@@ -72,7 +72,7 @@
   <body style='display: none' class="less">
 
     <section class='slides layout-regular'>
-      
+
       <article class='less_logo nobackground'>
       </article>
 
@@ -88,8 +88,8 @@
           Декабрь, 2012
         </p>
       </article>
-      
-	  
+
+
       <article class="slide3">
         <h3>
           Основные темы:
@@ -97,7 +97,7 @@
         <ul class=""	>
         	<li>Что такое LESS</li>
         	<li>Как использовать LESS</li>
-        	<li>Синтаксис LESS</li>			
+        	<li>Синтаксис LESS</li>
 			<ul>
 				<li>Переменные</li>
 				<li>Примеси (обычные и с параметром)</li>
@@ -106,7 +106,7 @@
 				<li>Комментарии, импортирование и экранирование</li>
 			</ul>
         	<li>Дополнительная информация</li>
-        </ul>	
+        </ul>
       </article>
 
       <article class='slide4'>
@@ -114,7 +114,7 @@
           Что такое LESS
         </h3>
         <p>
-			LESS – это надстройка над CSS, которая расширяет CSS динамическими возможностями, такими как переменные, примешивания, операции и функции. 
+			LESS – это надстройка над CSS, которая расширяет CSS динамическими возможностями, такими как переменные, примешивания, операции и функции.
         </p>
 		<p>
 			Любой CSS код – это валидный LESS, но дополнительные элементы LESS не будут работать в простом CSS.
@@ -170,10 +170,10 @@
 <span class="rule">}</span></span>
 </pre>
 	<p>
-		В примере выше мы объявляем переменную <code>@header-font</code> и записываем туда значение «<code>Georgia</code>». Теперь мы можем использовать эту переменную всегда, когда мы хотим установить шрифт Georgia. 
+		В примере выше мы объявляем переменную <code>@header-font</code> и записываем туда значение «<code>Georgia</code>». Теперь мы можем использовать эту переменную всегда, когда мы хотим установить шрифт Georgia.
 	</p>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Примеси (mixins)
@@ -202,7 +202,7 @@
 		Мы определили элемент <code>.rounded_top</code> для округления верхних углов. Когда мы добавляем его к любому другому элементу как примесь мы  импортируем правила, которые мы создали для него.
 	</p>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Примеси с параметром
@@ -228,7 +228,7 @@
 </pre>
 <p>Тут радиус у <code>.tab</code> равен 6px, а <code>.submit</code> получит значение 3px.</p>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Вложенные правила
@@ -249,13 +249,13 @@ article.post {
 }
 </pre>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Операции
         </h3>
 		<p>В LESS можно использовать операции умножения, деления, сложения и вычитания. </p>
-		
+
 <pre>
 .button{
     @unit: 3px;
@@ -266,7 +266,7 @@ article.post {
 </pre>
 <p>Присваиваем переменной <code>@unit</code> значение 3px. Затем мы устанавливаем ширину рамки равную значению переменной <code>@unit</code>, отступы в три раза больше этой ширины, а поля – в два.	</p>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Операции управления цветом
@@ -285,7 +285,7 @@ button {
 На практике есть немало случаев, когда мы начинаем с базового цвета и нуждаемся в слегка затемненном или осветленном его варианте.
 </p>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Функции работы с цветом
@@ -321,7 +321,7 @@ lightness(@color);  // возвращает канал светлоты (`lightn
 </pre>
 <p>в результате <code>@new</code> получит тон (hue), равный тону цвета <code>@old</code>, но при этом будет иметь свои собственные насыщенность и светлоту.</p>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Математические функции
@@ -337,7 +337,7 @@ floor(2.6);  // вернет `2`
 percentage(0.5); // вернет `50%`
 </pre>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Комментарии
@@ -353,7 +353,7 @@ percentage(0.5); // вернет `50%`
 .class { color: white }
 </pre>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Импортирование
@@ -369,7 +369,7 @@ percentage(0.5); // вернет `50%`
 </pre>
 <p>Директива будет оставлена как есть, и в этом же виде попадет в вывод CSS.</p>
       </article>
-	  
+
       <article class='smaller'>
         <h3>
           Синтаксис LESS — Экранирование
@@ -405,7 +405,7 @@ percentage(0.5); // вернет `50%`
 		<p><br /><br />Ссылка на презентацию — <a href="http://ymatuhin.vbrk.ru/less.html">http://ymatuhin.vbrk.ru/less.html</a></p>
       </article>
 
-	
+
       <article class="last_slide">
         <h1>
 		  Спасибо за внимание!
@@ -417,6 +417,8 @@ percentage(0.5); // вернет `50%`
       </article>
 
     </section>
+
+	<a href="https://github.com/ymatuhin/less-presentation"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 
   </body>
 </html>
